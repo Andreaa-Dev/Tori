@@ -1,8 +1,12 @@
-import React from "react";
-import { FlatList, SafeAreaView } from "react-native";
-import ListItem from "../component/ListItem";
+import React, { useState } from "react";
+import { FlatList, StyleSheet } from "react-native";
 
-const message = [
+import ListItem from "../component/ListItem";
+import ListItemDeleteAction from "../component/ListItemDeleteAction";
+import ListItemSeparator from "../component/ListItemSeparator";
+import Screen from "../component/Screen";
+
+const messageList = [
   {
     id: 1,
     title: "t1",
@@ -17,8 +21,13 @@ const message = [
   },
 ];
 function MessageScreen(props) {
+  const [message, setMessage] = useState[messageList];
+  const deleteMessageHandler = (message) => {
+    const filteredMessage = message.filter((m) => m.id !== message.id);
+    setMessage(filteredMessage);
+  };
   return (
-    <SafeAreaView>
+    <Screen>
       <FlatList
         data={message}
         keyExtractor={(message) => message.id.toString()}
@@ -27,11 +36,19 @@ function MessageScreen(props) {
             title={item.title}
             subTitle={item.description}
             image={item.image}
+            onPress={() => console.log("done", item)}
+            renderRightActions={() => (
+              <ListItemDeleteAction
+                onPress={() => deleteMessageHandler(item)}
+              />
+            )}
           />
         )}
+        ItemSeparatorComponent={() => <ListItemSeparator />}
       />
-    </SafeAreaView>
+    </Screen>
   );
 }
+const styles = StyleSheet.create({});
 
 export default MessageScreen;
