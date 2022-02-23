@@ -20,10 +20,11 @@ const messageList = [
     image: require("../assets/ma.jpeg"),
   },
 ];
+
 function MessageScreen(props) {
-  const [message, setMessage] = useState[messageList];
-  const deleteMessageHandler = (message) => {
-    const filteredMessage = message.filter((m) => m.id !== message.id);
+  const [message, setMessage] = useState(messageList);
+  const deleteMessageHandler = (item) => {
+    const filteredMessage = message.filter((m) => item.id !== m.id);
     setMessage(filteredMessage);
   };
   return (
