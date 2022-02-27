@@ -23,10 +23,13 @@ const messageList = [
 
 function MessageScreen(props) {
   const [message, setMessage] = useState(messageList);
+  const [refreshing, setRefreshing] = useState(false);
+
   const deleteMessageHandler = (item) => {
     const filteredMessage = message.filter((m) => item.id !== m.id);
     setMessage(filteredMessage);
   };
+
   return (
     <Screen>
       <FlatList
@@ -46,6 +49,17 @@ function MessageScreen(props) {
           />
         )}
         ItemSeparatorComponent={() => <ListItemSeparator />}
+        refreshing={refreshing}
+        onRefresh={() =>
+          setMessage([
+            {
+              id: 2,
+              title: "t2",
+              description: "2s",
+              image: require("../assets/ma.jpeg"),
+            },
+          ])
+        }
       />
     </Screen>
   );
