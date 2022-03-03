@@ -4,5 +4,5 @@ export default {
   black: "#000",
   white: "#fff",
   medium: "#6e6969",
-  light: "#9bd1d1",
+  light: "#ECECEC",
 };
