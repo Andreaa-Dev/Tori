@@ -4,7 +4,8 @@ import WelcomeScreen from "./app/screens/WelcomeScreen";
 import MessageScreen from "./app/screens/MessageScreen";
 import AccountScreen from "./app/screens/AccountScreen";
 import LogInScreen from "./app/screens/LogInScreen";
+import ListEditScreen from "./app/screens/ListEditScreen";
 
 export default function App() {
-  return <LogInScreen />;
+  return <ListEditScreen />;
 }

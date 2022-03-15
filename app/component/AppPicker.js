@@ -11,16 +11,28 @@ import Screen from "./Screen";
 import defaultStyle from "../config/style";
 import PickItem from "./PickItem";
 
-export default function AppPicker({ icon, placeholder }) {
+export default function AppPicker({
+  icon,
+  placeholder,
+  items,
+  onSelectedItem,
+  selectedItem,
+}) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
         <View style={styles.container}>
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>
+            {selectedItem ? (
+              <AppText style={styles.text}>{selectedItem.label}</AppText>
+            ) : (
+              <AppText style={styles.placeholder}>{placeholder}</AppText>
+            )}
+          </AppText>
           {icon && (
             <MaterialCommunityIcons
-              name={icon}
+              name="chevron-down"
               size={20}
               color={defaultStyle.colour.medium}
             />
@@ -51,6 +63,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   text: {
+    flex: 1,
+  },
+  placeholder: {
+    color: defaultStyle.text.color.medium,
     flex: 1,
   },
 });
