@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
-import ListItem from "../component/ListItem";
-import ListItemDeleteAction from "../component/ListItemDeleteAction";
-import ListItemSeparator from "../component/ListItemSeparator";
+import ListItem from "../component/item/ListItem";
+import ListItemDeleteAction from "../component/item/ListItemDeleteAction";
+import ListItemSeparator from "../component/item/ListItemSeparator";
 import Screen from "../component/Screen";
 
 const messageList = [

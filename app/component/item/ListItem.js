@@ -3,17 +3,10 @@ import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import colour from "../config/colour";
-import AppText from "./AppText";
+import colour from "../../config/colour";
+import AppText from "../AppText";
 
-function ListItem({
-  title,
-  subTitle,
-  image,
-  onPress,
-  ImageComponent,
-  renderRightActions,
-}) {
+function ListItem({ title, subTitle, image, renderRightActions }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight

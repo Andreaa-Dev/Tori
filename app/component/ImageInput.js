@@ -1,17 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 
 import colour from "../config/colour";
 
-export default function ImageInput({ imageUri }) {
+export default function ImageInput({ imageUri, handlePress }) {
   return (
-    <View style={styles.container}>
-      {!imageUri && (
-        <MaterialCommunityIcons color={colour.medium} name="camera" />
-      )}
-      {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
-    </View>
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        {!imageUri && (
+          <MaterialCommunityIcons color={colour.medium} name="camera" />
+        )}
+        {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
