@@ -1,13 +1,34 @@
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import React from "react";
+import {
+  Alert,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import React, { useEffect } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
-import colour from "../config/colour";
+import colour from "../../config/colour";
 
 export default function ImageInput({ imageUri, onChangeImage }) {
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const requestPermission = async () => {
+    const { grant } = await ImagePicker.requestCameraPermissionsAsync.grant();
+    if (!grant) alert("You need to enable permission to access images");
+  };
   const handlePress = () => {
     if (!imageUri) selectImage();
+    else
+      Alert.alert("Delete", "Are you sure you want to delete this image", [
+        {
+          text: "Yes",
+          onPress: () => onChangeImage(null),
+        },
+        { text: "No" },
+      ]);
   };
 
   const selectImage = async () => {
