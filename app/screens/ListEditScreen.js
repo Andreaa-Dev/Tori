@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
-import * as Location from "expo-location";
 
 import Screen from "../component/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../component/forms";
 import FormImagePicker from "../component/forms/FormImagePicker";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Email"),
@@ -20,6 +20,8 @@ const category = [
   { label: "e", value: 2 },
 ];
 export default function ListEditScreen() {
+  const location = useLocation();
+
   return (
     <Screen>
       <AppForm
@@ -30,7 +32,7 @@ export default function ListEditScreen() {
           category: null,
           images: [],
         }}
-        onSubmit={(value) => console.log(value)}
+        onSubmit={(value) => console.log(location)}
         validationSchema={validationSchema}
       />
       <AppFormField maxLength={225} name="title" placeholder="Title" />
