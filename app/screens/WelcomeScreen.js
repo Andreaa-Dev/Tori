@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import AppButton from "../component/AppButton";
 import AppText from "../component/AppText";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       blurRadius={0.5}
@@ -18,8 +18,19 @@ function WelcomeScreen(props) {
         <AppText> All items, every day, better than before</AppText>
       </View>
       <View style={styles.buttonContainer}>
-        <AppButton title="Login" />
-        <AppButton title="Register" color="secondary" />
+        <AppButton
+          title="Login"
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        />
+        <AppButton
+          title="Register"
+          color="secondary"
+          onPress={() => {
+            navigation.navigate("Register");
+          }}
+        />
       </View>
     </ImageBackground>
   );
