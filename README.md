@@ -1,3 +1,3 @@
 # Tori
 
-![](.Login.png)
+![](./Login.png)
