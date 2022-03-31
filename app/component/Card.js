@@ -1,16 +1,22 @@
 import React from "react";
-import { View, Image } from "react-native";
+import {
+  View,
+  Image,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 import colour from "../config/colour";
-import chair from "../assets/chair.jpeg";
 
-function Card({ title, price, image }) {
+function Card({ title, price, image, onPress }) {
   return (
-    <View style={styles.card}>
-      <Image source={chair} />
-      <AppText>{title}</AppText>
-      <AppText>{price}</AppText>
-    </View>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.card}>
+        <AppText>{title}</AppText>
+        <AppText>{price}</AppText>
+        <Image source={image} />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 const styles = StyleSheet.create({

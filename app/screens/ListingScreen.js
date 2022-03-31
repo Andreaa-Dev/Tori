@@ -31,7 +31,7 @@ export default function ListingScreen() {
             title={item.title}
             price={item.price + "$"}
             image={item.image}
-          ></Card>;
+          />;
         }}
       />
     </Screen>
