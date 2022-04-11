@@ -6,18 +6,15 @@ import MessageScreen from "../screens/MessageScreen";
 const Stack = createStackNavigator();
 
 const AccountNavigator = () => {
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Account"
-      component={AccountScreen}
-      options={{ headerShown: false }}
-    ></Stack.Screen>
-    <Stack.Screen
-      name="MessageScreen"
-      component={MessageScreen}
-      options={{ headerShown: false }}
-    ></Stack.Screen>
-  </Stack.Navigator>;
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Account" component={AccountScreen}></Stack.Screen>
+      <Stack.Screen
+        name="MessageScreen"
+        component={MessageScreen}
+      ></Stack.Screen>
+    </Stack.Navigator>
+  );
 };
 
 export default AccountNavigator;
