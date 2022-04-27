@@ -8,13 +8,13 @@ import {
 
 import colour from "../config/colour";
 
-function Card({ title, price, image, onPress }) {
+function Card({ title, price, imageUrl, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <AppText>{title}</AppText>
         <AppText>{price}</AppText>
-        <Image source={image} />
+        <Image source={{ uri: imageUrl }} />
       </View>
     </TouchableWithoutFeedback>
   );
