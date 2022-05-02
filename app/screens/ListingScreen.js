@@ -7,18 +7,24 @@ import colour from "../config/colour";
 import routes from "../navigation/routes";
 import listingsApi from "../api/listing";
 import AppText from "../component/AppText";
+import Button from "../component/AppButton";
+import ActivityIndicator from "../component/ActivityIndicator";
 
 export default function ListingScreen({ navigation }) {
   const [listings, setListings] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     loadListings();
   }, []);
 
   const loadListings = async () => {
+    setLoading(true);
     const response = await listingsApi.getListings();
+    setLoading(false);
     if (!response.ok) return setError(true);
+
     setError(false);
     setListings(response.data);
   };
@@ -31,6 +37,7 @@ export default function ListingScreen({ navigation }) {
           <Button title="Retry" onPress={loadListings} />
         </>
       )}
+      <ActivityIndicator visible={true} />
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
