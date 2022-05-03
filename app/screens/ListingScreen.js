@@ -5,41 +5,29 @@ import Screen from "../component/Screen";
 import Card from "../component/Card";
 import colour from "../config/colour";
 import routes from "../navigation/routes";
-import listingsApi from "../api/listing";
 import AppText from "../component/AppText";
 import Button from "../component/AppButton";
 import ActivityIndicator from "../component/ActivityIndicator";
+import useApi from "../hooks/useApi";
+import listingApi from "../api/listing";
 
 export default function ListingScreen({ navigation }) {
-  const [listings, setListings] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-
+  const getListingsApi = useApi(listingApi.getListings);
   useEffect(() => {
-    loadListings();
+    getListingsApi.request(1, 2, 3);
   }, []);
-
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingsApi.getListings();
-    setLoading(false);
-    if (!response.ok) return setError(true);
-
-    setError(false);
-    setListings(response.data);
-  };
 
   return (
     <Screen style={styles.screen}>
-      {error && (
+      {getListingsApi.error && (
         <>
           <AppText> Could not fetch data</AppText>
-          <Button title="Retry" onPress={loadListings} />
+          <Button title="Retry" onPress={getListingsApi.loadListings} />
         </>
       )}
-      <ActivityIndicator visible={true} />
+      <ActivityIndicator visible={getListingsApi.loading} />
       <FlatList
-        data={listings}
+        data={getListingsApi.listings}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => {
           <Card

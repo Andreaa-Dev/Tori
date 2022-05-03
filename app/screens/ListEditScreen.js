@@ -6,6 +6,7 @@ import Screen from "../component/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../component/forms";
 import FormImagePicker from "../component/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
+import listingApi from "../api/listing";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Email"),
@@ -21,7 +22,14 @@ const category = [
 ];
 export default function ListEditScreen() {
   const location = useLocation();
-
+  const handleSubmit = async (listing) => {
+    const result = await listingApi.addListing(
+      { ...listing, location },
+      (progress) => console.log(progress)
+    );
+    if (!result.ok) return alert("Could not save the listing");
+    alert("Success");
+  };
   return (
     <Screen>
       <AppForm
@@ -32,7 +40,7 @@ export default function ListEditScreen() {
           category: null,
           images: [],
         }}
-        onSubmit={(value) => console.log(location)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       />
       <AppFormField maxLength={225} name="title" placeholder="Title" />
