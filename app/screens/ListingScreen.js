@@ -7,14 +7,14 @@ import colour from "../config/colour";
 import routes from "../navigation/routes";
 import AppText from "../component/AppText";
 import Button from "../component/AppButton";
-import ActivityIndicator from "../component/ActivityIndicator";
+// import ActivityIndicator from "../component/ActivityIndicator";
 import useApi from "../hooks/useApi";
 import listingApi from "../api/listing";
 
 export default function ListingScreen({ navigation }) {
   const getListingsApi = useApi(listingApi.getListings);
   useEffect(() => {
-    getListingsApi.request(1, 2, 3);
+    getListingsApi.request();
   }, []);
 
   return (
@@ -25,7 +25,7 @@ export default function ListingScreen({ navigation }) {
           <Button title="Retry" onPress={getListingsApi.loadListings} />
         </>
       )}
-      <ActivityIndicator visible={getListingsApi.loading} />
+      {/* <ActivityIndicator visible={getListingsApi.loading} /> */}
       <FlatList
         data={getListingsApi.listings}
         keyExtractor={(listing) => listing.id.toString()}
