@@ -26,7 +26,7 @@ export default function ListingScreen({ navigation }) {
           <Button title="Retry" onPress={getListingsApi.loadListings} />
         </>
       )}
-      <ActivityIndicator visible={getListingsApi.loading} />
+      {/* <ActivityIndicator visible={getListingsApi.loading} /> */}
       <FlatList
         data={getListingsApi.data}
         keyExtractor={(listing) => listing.id.toString()}
@@ -46,5 +46,5 @@ export default function ListingScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  screen: { padding: 21, backgroundColor: colour.light },
+  screen: { padding: 10, backgroundColor: colour.light },
 });

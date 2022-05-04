@@ -8,11 +8,8 @@ const Stack = createStackNavigator();
 const AccountNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Account" component={AccountScreen}></Stack.Screen>
-      <Stack.Screen
-        name="MessageScreen"
-        component={MessageScreen}
-      ></Stack.Screen>
+      <Stack.Screen name="AccountScreen" component={AccountScreen} />
+      <Stack.Screen name="MessageScreen" component={MessageScreen} />
     </Stack.Navigator>
   );
 };

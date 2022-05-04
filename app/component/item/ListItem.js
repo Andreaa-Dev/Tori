@@ -6,7 +6,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colour from "../../config/colour";
 import AppText from "../AppText";
 
-function ListItem({ title, subTitle, image, renderRightActions }) {
+function ListItem({
+  title,
+  subTitle,
+  image,
+  IconComponent,
+  renderRightActions,
+}) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight
@@ -14,6 +20,7 @@ function ListItem({ title, subTitle, image, renderRightActions }) {
         onPress={() => console.log()}
       >
         <View style={styles.container}>
+          {IconComponent}
           {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailContainer}>
             <AppText style={styles.title} numberOfLine={1}>

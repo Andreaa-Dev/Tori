@@ -6,6 +6,7 @@ import Icon from "../component/Icon";
 import Screen from "../component/Screen";
 import ListItem from "../component/item/ListItem";
 import ListItemSeparator from "../component/item/ListItemSeparator";
+import routes from "../navigation/routes";
 
 const menuItems = [
   {
@@ -21,7 +22,7 @@ const menuItems = [
       name: "email",
       backgroundColor: colour.secondary,
     },
-    targetScreen: "Message",
+    targetScreen: routes.MESSAGE,
   },
 ];
 
@@ -43,7 +44,7 @@ export default function AccountScreen({ navigation }) {
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
-              ImageComponent={
+              IconComponent={
                 <Icon
                   name={item.icon.name}
                   backgroundColor={item.icon.backgroundColor}
@@ -54,7 +55,12 @@ export default function AccountScreen({ navigation }) {
           )}
         />
       </View>
-      <ListItem title="Log Out" />
+      <ListItem
+        title="Log Out"
+        IconComponent={
+          <Icon name="logout" backgroundColor={item.icon.backgroundColor} />
+        }
+      />
     </Screen>
   );
 }
