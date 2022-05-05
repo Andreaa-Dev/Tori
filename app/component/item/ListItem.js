@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
-import { Swipeable } from "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colour from "../../config/colour";
@@ -12,13 +12,11 @@ function ListItem({
   image,
   IconComponent,
   renderRightActions,
+  onPress,
 }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
-      <TouchableHighlight
-        underlayColor={colour.light}
-        onPress={() => console.log()}
-      >
+      <TouchableHighlight underlayColor={colour.light} onPress={() => onPress}>
         <View style={styles.container}>
           {IconComponent}
           {image && <Image style={styles.image} source={image} />}
@@ -54,9 +52,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     justifyContent: "center",
   },
-  image: { heigh: 50, width: 50, borderRadius: 35, marginRight: 10 },
+  image: { height: 50, width: 50, borderRadius: 35 },
   title: {
-    fontWeight: 500,
+    fontWeight: "500",
   },
   subTitle: {
     color: colour.medium,

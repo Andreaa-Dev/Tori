@@ -39,7 +39,7 @@ export default function AccountScreen({ navigation }) {
       <View style={styles.container}>
         <FlatList
           data={menuItems}
-          keyExtractor={(menuItems) => menuItems.title}
+          keyExtractor={(menuItem) => menuItem.title}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
             <ListItem
@@ -57,9 +57,7 @@ export default function AccountScreen({ navigation }) {
       </View>
       <ListItem
         title="Log Out"
-        IconComponent={
-          <Icon name="logout" backgroundColor={item.icon.backgroundColor} />
-        }
+        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
     </Screen>
   );
