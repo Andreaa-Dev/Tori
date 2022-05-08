@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import * as Yup from "yup";
+import { StyleSheet } from "react-native";
 
 import { AppForm, AppFormField, SubmitButton } from "../component/forms";
 import FormImagePicker from "../component/forms/FormImagePicker";
@@ -8,6 +8,7 @@ import useLocation from "../hooks/useLocation";
 import Screen from "../component/Screen";
 import UploadScreen from "./UploadScreen";
 import listingApi from "../api/listing";
+import CategoryPickerItem from "../component/CategoryPickerItem";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Email"),
@@ -18,9 +19,62 @@ const validationSchema = Yup.object().shape({
 });
 
 const category = [
-  { label: "l", value: 1 },
-  { label: "e", value: 2 },
+  {
+    backgroundColor: "#fc5c65",
+    icon: "floor-lamp",
+    label: "Furniture",
+    value: 1,
+  },
+  {
+    backgroundColor: "#fd9644",
+    icon: "car",
+    label: "Cars",
+    value: 2,
+  },
+  {
+    backgroundColor: "#fed330",
+    icon: "camera",
+    label: "Cameras",
+    value: 3,
+  },
+  {
+    backgroundColor: "#26de81",
+    icon: "cards",
+    label: "Games",
+    value: 4,
+  },
+  {
+    backgroundColor: "#2bcbba",
+    icon: "shoe-heel",
+    label: "Clothing",
+    value: 5,
+  },
+  {
+    backgroundColor: "#45aaf2",
+    icon: "basketball",
+    label: "Sports",
+    value: 6,
+  },
+  {
+    backgroundColor: "#4b7bec",
+    icon: "headphones",
+    label: "Movies & Music",
+    value: 7,
+  },
+  {
+    backgroundColor: "#a55eea",
+    icon: "book-open-variant",
+    label: "Books",
+    value: 8,
+  },
+  {
+    backgroundColor: "#778ca3",
+    icon: "application",
+    label: "Other",
+    value: 9,
+  },
 ];
+
 export default function ListEditScreen() {
   const location = useLocation();
   const [uploadVisible, setUploadVisible] = useState(false);
@@ -40,11 +94,11 @@ export default function ListEditScreen() {
     resetForm();
   };
   return (
-    <Screen>
+    <Screen style={styles.container}>
       <UploadScreen
         onDone={() => setUploadVisible(false)}
         progress={progress}
-        visible={visible}
+        visible={uploadVisible}
       />
       <AppForm
         initialValues={{
@@ -56,26 +110,37 @@ export default function ListEditScreen() {
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
-      />
-      <AppFormField maxLength={225} name="title" placeholder="Title" />
-      <AppFormField
-        keyboardType="numeric"
-        maxLength={8}
-        name="price"
-        placeholder="Price"
-      />
-      <FormImagePicker name="Images" />
-      <AppFormField items={category} name="Category" placeholder="Category" />
-      <AppFormField
-        maxLength={225}
-        multiline
-        name="description"
-        numberOfLines={3}
-        placeholder="Description"
-      />
-      <SubmitButton title="Post" />
+      >
+        <FormImagePicker name="images" />
+        <AppFormField maxLength={225} name="title" placeholder="Title" />
+        <AppFormField
+          keyboardType="numeric"
+          maxLength={8}
+          name="price"
+          placeholder="Price"
+        />
+        <AppFormField
+          items={category}
+          name="category"
+          numberOfColumns={3}
+          placeholder="Category"
+          PickItemComponent={CategoryPickerItem}
+        />
+        <AppFormField
+          maxLength={225}
+          multiline
+          name="description"
+          numberOfLines={3}
+          placeholder="Description"
+        />
+        <SubmitButton title="Post" />
+      </AppForm>
     </Screen>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+});

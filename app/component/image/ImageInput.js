@@ -39,22 +39,24 @@ export default function ImageInput({ imageUri, onChangeImage }) {
       });
       if (!result.cancelled) onChangeImage(result.uri);
     } catch (error) {
-      console.log("error");
+      console.log("Error reading an image", error);
     }
-
-    return (
-      <TouchableWithoutFeedback onPress={handlePress}>
-        <View style={styles.container}>
-          {!imageUri && (
-            <MaterialCommunityIcons color={colour.medium} name="camera" />
-          )}
-          {imageUri && (
-            <Image source={{ uri: imageUri }} style={styles.image} />
-          )}
-        </View>
-      </TouchableWithoutFeedback>
-    );
   };
+
+  return (
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        {!imageUri && (
+          <MaterialCommunityIcons
+            color={colour.medium}
+            name="camera"
+            size={40}
+          />
+        )}
+        {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
+      </View>
+    </TouchableWithoutFeedback>
+  );
 }
 
 const styles = StyleSheet.create({
