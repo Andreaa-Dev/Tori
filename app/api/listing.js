@@ -2,6 +2,7 @@ import apiClient from "./client";
 
 const endpoint = "/listings";
 const getListings = () => apiClient.get(endpoint);
+
 const addListing = (listing, onUploadProgress) => {
   const data = new FormData();
   data.append("title", listing.title);
