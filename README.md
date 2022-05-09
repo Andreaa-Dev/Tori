@@ -11,3 +11,7 @@
 ## Account screen
 
 ![](./AccountScreen.png)
+
+## Offline Notice
+
+![](./OfflineNotice.png)
