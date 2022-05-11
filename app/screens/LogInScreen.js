@@ -11,7 +11,7 @@ import {
   ErrorMessage,
 } from "../component/forms";
 import authApi from "../api/auth";
-import AuthContext from "../auth/Context";
+import AuthContext from "../auth/context";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),

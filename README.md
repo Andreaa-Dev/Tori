@@ -2,16 +2,16 @@
 
 ## Log in page
 
-![](./Login.png)
+<img src = "./Login.png" width = "200"/>
 
 ## List of item
 
-![](./ListItem.png)
+<img src = "./ListItem.png" width = "200"/>
 
 ## Account screen
 
-![](./AccountScreen.png)
+<img src = "./AccountScreen.png" width = "200"/>
 
 ## Offline Notice
 
-![](./OfflineNotice.png)
+<img src = "./OfflineNotice.png" width = "200"/>

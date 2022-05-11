@@ -7,8 +7,7 @@ import Screen from "../component/Screen";
 import ListItem from "../component/item/ListItem";
 import ListItemSeparator from "../component/item/ListItemSeparator";
 import routes from "../navigation/routes";
-import AuthContext from "../auth/Context";
-import { set } from "react-native-reanimated";
+import AuthContext from "../auth/context";
 
 const menuItems = [
   {
